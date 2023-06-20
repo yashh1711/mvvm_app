@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mvvm_app/utils/routes.dart';
+import 'package:mvvm_app/utils/utils.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -21,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
         children: [
           InkWell(
             onTap: () {
-              Navigator.pushNamed(context, MyRoutes.homeRoute);
+              Utils.flushBarError("error", context);
             },
             child: const SizedBox(
               height: 30,
