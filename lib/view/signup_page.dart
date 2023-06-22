@@ -5,19 +5,20 @@ import 'package:mvvm_app/utils/utils.dart';
 import 'package:mvvm_app/view_model/auth_view_model.dart';
 import 'package:provider/provider.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   FocusNode emailFocusNode = FocusNode();
   FocusNode passwordFocusNode = FocusNode();
+  FocusNode nameFocusNode = FocusNode();
 
   final ValueNotifier<bool> _obscurePassword = ValueNotifier<bool>(true);
 
@@ -37,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
     final authViewModel = Provider.of<AuthviewProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login Page'),
+        title: const Text('Sign Up Page'),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -88,22 +89,21 @@ class _LoginPageState extends State<LoginPage> {
                   height: height * .1,
                 ),
                 RoundedButton(
-                  title: 'Login',
-                  loading: authViewModel.loading,
+                  title: 'Sign Up',
+                  loading: authViewModel.signUpLoading,
                   onPress: () {
                     if (_emailController.text.isEmpty) {
                       Utils.flushBarError('Please Enter Email', context);
                     } else if (_passwordController.text.isEmpty) {
                       Utils.flushBarError('Please Enter Password', context);
-                    } else if (_passwordController.text.length < 4) {
-                      Utils.toastMsg('Password Length less than 8');
+                    } else if (_passwordController.text.length < 6) {
+                      Utils.toastMsg('Password Length less than 6');
                     } else {
                       Map data = {
                         'email': _emailController.text,
                         'password': _passwordController.text
                       };
-                      authViewModel.loginApi(data, context);
-
+                      authViewModel.signUpApi(data, context);
                       debugPrint('HIIT');
                     }
                   },
@@ -111,12 +111,12 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: height * 0.05,
                 ),
-                const Text('Don\'t have an account?'),
+                const Text('Already have an account?'),
                 RoundedButton(
-                  title: 'Sign Up',
+                  title: 'Login',
                   onPress: () {
                     Navigator.pushReplacementNamed(
-                        context, MyRoutes.signUpRoute);
+                        context, MyRoutes.loginRoute);
                   },
                 )
               ],
