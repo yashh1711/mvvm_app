@@ -1,16 +1,25 @@
-# mvvm_app
 
-A new Flutter project.
+# MVVM APP
 
-## Getting Started
+A basic app that is built keeping in mind the MVVM structure of mobile applications using flutter and dart.
 
-This project is a starting point for a Flutter application.
+The app is built using flutter and uses provider as the state management solution.\
+ https://pub.dev/packages/provider \
+  Packages such as flutter_toast are also used to amplify user experience.
 
-A few resources to get you started if this is your first Flutter project:
+This app uses POST API from \
+https://reqres.in/
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Login and SignUp both are working and according to the backend provided by Reqres.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Email Credential for both login and SignUp is : \
+eve.holt@reqres.in
+
+Any password can be used as long as it is longer than 6 characters.
+
+The app also uses shared_preferences package which helps in saving credentials locally, so than the user does not have to login everytime. \
+https://pub.dev/packages/shared_preferences
+
+The user can also LogOut when the app session is no longer needed using the log out button on home screen.
+
+
